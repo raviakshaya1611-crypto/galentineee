@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>i am so gay about you</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Playfair+Display:ital@0;1&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #ff2e63, #9b1032);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Card */
+.card {
+    background: #fff1f5;
+    padding: 42px;
+    max-width: 700px;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+    position: relative;
+    animation: slamIn 0.9s ease;
+}
+
+@keyframes slamIn {
+    from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+    to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+h1 {
+    font-family: 'Comic Neue', cursive;
+    color: #9b1032;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    text-align: center;
+    font-style: italic;
+    color: #5f0d24;
+    margin-bottom: 30px;
+}
+
+/* Confession pages */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Text */
+p {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.8;
+    font-size: 1.1em;
+    color: #4a0f21;
+    margin-bottom: 18px;
+}
+
+/* Hover shake */
+.shake:hover {
+    animation: shake 0.4s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(-1px,1px); }
+    50% { transform: translate(1px,-1px); }
+    75% { transform: translate(-1px,-1px); }
+    100% { transform: translate(0,0); }
+}
+
+/* Highlight chaos */
+.feral {
+    background: #ffd1dc;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-family: 'Comic Neue', cursive;
+    display: inline-block;
+}
+
+/* Next button */
+button {
+    background: #ff2e63;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+button:hover {
+    background: #d81b52;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: rgba(255,255,255,0.75);
+    font-size: 18px;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>hi. this escalates.</h1>
+    <div class="subtitle">(click responsibly. or don’t.)</div>
+
+    <!-- PAGE 1 -->
+    <div class="page active">
+        <p class="shake">
+            I’m going to start normal and pretend I am a functional person.
+            You are my best friend. You are safe. You are home.
+        </p>
+
+        <p class="shake">
+            Unfortunately, you are also <span class="feral">really pretty</span>,
+            which has complicated my entire existence.
+        </p>
+
+        <button onclick="nextPage()">okay next</button>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <p class="shake">
+            You make my legs shake, it’s actually so devastating.
+            Like why am I feeling emotions in HD???
+        </p>
+
+        <p class="shake">
+            Every time you look at me I have to reboot.
+            The inner man in me spikes up cuz huh?
+            Why am I suddenly standing straighter???
+        </p>
+
+        <button onclick="popUp(); nextPage()">this is getting worse</button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page">
+        <p class="shake">
+            This is where I admit I am <span class="feral">aggressively sapphic</span>
+            about you. Soft hands. Warm smiles. The way you exist???
+        </p>
+
+        <p class="shake">
+            You are my “inside joke at 2am” person.
+            My “remember when that one thing happened” person.
+            My <span class="feral">[PUT YOUR INSIDE JOKE HERE]</span> person.
+        </p>
+
+        <button onclick="popUp(); nextPage()">oh god</button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page">
+        <p class="shake">
+            Loving you feels loud and gentle and very gay.
+            It feels like choosing you every time
+            and not even pretending to hesitate.
+        </p>
+
+        <p class="shake">
+            So yeah. This is my confession.
+            I adore you. I choose you.
+            I am extremely down bad for my best friend.
+        </p>
+
+        <p class="feral">
+            yours. obviously. 🌈❤️‍🔥
+        </p>
+    </div>
+</div>
+
+<script>
+let pageIndex = 0;
+const pages = document.querySelectorAll(".page");
+
+function nextPage() {
+    pages[pageIndex].classList.remove("active");
+    pageIndex++;
+    if (pages[pageIndex]) {
+        pages[pageIndex].classList.add("active");
+    }
+}
+
+function popUp() {
+    const messages = [
+        "WHY ARE YOU SO ATTRACTIVE??",
+        "this is NOT platonic behavior",
+        "help. i am in love.",
+        "she smiled at me and i folded."
+    ];
+    alert(messages[Math.floor(Math.random() * messages.length)]);
+}
+
+/* hearts */
+function spawnHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (14 + Math.random() * 24) + "px";
+    h.style.animationDuration = (4 + Math.random() * 5) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 9000);
+}
+setInterval(spawnHeart, 260);
+</script>
+
+</body>
+</html>
+
